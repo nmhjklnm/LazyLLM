@@ -4,19 +4,28 @@
 
 import os
 import sys
-import sphinx_rtd_theme
+# import sphinx_rtd_theme
+# html_theme = 'sphinx_rtd_theme'
+# html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme = 'sphinx_material'
+
 sys.path.insert(0, os.path.abspath('../../'))
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.doctest',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode']
+    "sphinx.ext.autodoc",
+    "sphinx.ext.coverage",
+    "sphinx.ext.autodoc.typehints",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.napoleon",
+    "sphinx_rtd_theme",
+    "sphinx.ext.mathjax",
+    "m2r2",
+    "myst_nb",
+    "sphinxcontrib.autodoc_pydantic",
+    # "sphinx_reredirects",
+    "sphinx_automodapi.automodapi",
+    # "sphinxcontrib.gtagjs",
+]
 
 source_suffix = '.rst'
 master_doc = 'index'
@@ -32,8 +41,6 @@ language = 'cn'
 exclude_patterns = []
 pygments_style = 'sphinx'
 todo_include_todos = True
-html_theme = 'sphinx_rtd_theme'
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_static_path = ['_static']
 html_sidebars = {
     '**': [

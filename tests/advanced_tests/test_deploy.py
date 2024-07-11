@@ -37,8 +37,21 @@ class TestDeploy(object):
         m.eval()
         assert len(m.eval_result) == len(self.inputs)
 
+    def test_deploy_auto_without_calling_method(self):
+        m = lazyllm.TrainableModule(self.model_path, '')
+        m.evalset(self.inputs)
+        m.update_server()
+        m.eval()
+        assert len(m.eval_result) == len(self.inputs)
+
     def test_embedding(self):
         m = lazyllm.TrainableModule('bge-large-zh-v1.5').deploy_method(deploy.AutoDeploy)
         m.update_server()
         res = m('你好')
         assert len(json.loads(res)) == 1024
+
+    def test_sd3(self):
+        m = lazyllm.TrainableModule('stable-diffusion-3-medium')
+        m.update_server()
+        res = m('a little cat')
+        assert "images_base64" in json.loads(res)
